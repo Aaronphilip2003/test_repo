@@ -11,6 +11,15 @@ class SingleLinkedLists:
         nb=Node(data)
         nb.next=self.head
         self.head=nb
+    
+    def insertAtPosition(self,data,position):
+        np=Node(data)
+        temp=self.head
+        for i in range(position-1):
+            temp=temp.next
+        np.data=data
+        np.next=temp.next
+        temp.next=np
 
     def insertAtEnd(self,data):
         ne=Node(data)
@@ -18,6 +27,28 @@ class SingleLinkedLists:
         while temp.next:
             temp=temp.next
         temp.next=ne
+    
+    def deleteAtBeginning(self):
+        temp=self.head
+        self.head=temp.next
+        temp.next=None
+    
+    def deleteAtPosition(self,position):
+        temp=self.head.next
+        prev=self.head
+        for i in range(position-1):
+            temp=temp.next
+            prev=prev.next
+        prev.next=temp.next
+        temp.next=None
+    
+    def deleteAtEnd(self):
+        prev=self.head
+        temp=self.head.next
+        while temp.next is not None:
+            temp=temp.next
+            prev=prev.next
+        prev.next=None
 
     def display(self):
         if self.head is None:
@@ -36,8 +67,16 @@ n1=Node(10)
 L.head=n1
 n2=Node(20)
 L.head.next=n2
-L.display()
+L.display`()
 L.insertAtBeginning(0)
 L.display()
 L.insertAtEnd(30)
+L.display()
+L.insertAtPosition(25,3)
+L.display()
+L.deleteAtBeginning()
+L.display()
+L.deleteAtEnd()
+L.display()
+L.deleteAtPosition(1)
 L.display()
